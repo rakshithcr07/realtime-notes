@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Socket Test</title>
+</head>
+<body>
+<input id="text" placeholder="Type here..." />
+
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<script>
+  const socket = io("http://localhost:5000");
+
+  const noteId = "1";
+
+  socket.emit("join-note", noteId);
+
+  document.getElementById("text").addEventListener("input", e => {
+    socket.emit("edit-note", {
+      noteId,
+      content: e.target.value
+    });
+  });
+
+  socket.on("note-updated", data => {
+    document.getElementById("text").value = data;
+  });
+</script>
+</body>
+</html>
