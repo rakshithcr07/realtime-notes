@@ -2,26 +2,26 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:5000");
+const API = "https://realtime-notes-z8i2.onrender.com";
+const socket = io(API);
+
+
+
 
 function App() {
   const [notes, setNotes] = useState([]);
   const [text, setText] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/notes/1").then(res => {
-      setNotes(res.data);
-    });
+    axios.get(`${API}/api/notes/1`).then(res => setNotes(res.data));
 
     socket.emit("join-note", "1");
 
-    socket.on("note-updated", data => {
-      setText(data);
-    });
+    socket.on("note-updated", data => setText(data));
   }, []);
 
   const createNote = async () => {
-    await axios.post("http://localhost:5000/api/notes", {
+    await axios.post(`${API}/api/notes`, {
       title: "New Note",
       content: "",
       owner_id: 1
