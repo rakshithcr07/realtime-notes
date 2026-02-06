@@ -1,7 +1,7 @@
 # Real-Time Collaborative Notes Application
 
 ## 🔥 Live Demo
-- Frontend: https://6984dfb3c7f21b84161567bd--statuesque-chebakia-19b63d.netlify.app
+- Frontend: https://leafy-raindrop-968396.netlify.app
 - Backend: https://realtime-notes-z8i2.onrender.com
 
 ## 🚀 Features
